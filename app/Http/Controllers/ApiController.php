@@ -14,7 +14,6 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-use Nexmo\Laravel\Facade\Nexmo;
 use PHPUnit\Runner\Exception;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -48,6 +47,7 @@ class ApiController extends Controller
     public function getCloserSupplier(Request $request){
         $data = $request->json()->all();
 
+        $api_key =  env('googleKey');
 
 
         $supplier = Supplier::all();
@@ -55,7 +55,7 @@ class ApiController extends Controller
 
         for($i = 0; $i < count($supplier);$i++){
            try{
-               $responce = file_get_contents('https://maps.googleapis.com/maps/api/distancematrix/json?origins=place_id:'.$supplier[$i]['place_id'].'&destinations='.$data['destination'].'&mode=Driving&language=fr-FR&key=AIzaSyCoHhq-078QaLuiSUWMyBhT-DbXhHLHjwA');
+               $responce = file_get_contents('https://maps.googleapis.com/maps/api/distancematrix/json?origins=place_id:'.$supplier[$i]['place_id'].'&destinations='.$data['destination'].'&mode=Driving&language=fr-FR&key='.$api_key);
 
            }catch(\Exception $e){
                return response()->json([
@@ -232,15 +232,5 @@ class ApiController extends Controller
 
     }
 
-    public function sendSms(){
-       try{
-       Nexmo::message()->send([
-               'to'   => '+2348053870717',
-               'from' => '+234 818 968 1252',
-               'text' => 'Trying text messages'
-               ]);
-       }catch(\Exception $e){
-          echo $e->getMessage();
-       }
-    }
+
 }

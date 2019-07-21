@@ -22,7 +22,7 @@ class OrdersController extends Controller
 
         try{
 
-            $order = Orders::paginate($request->limit ?? 10);
+            $order = Orders::paginate(10);
 
             return response()->json([
                 "error" => 0,

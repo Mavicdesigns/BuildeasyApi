@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ed62edfdd8cb2e5fa9d9a1add6b3c2be",
+    "content-hash": "e17acd012d6c5475b200aab010668c97",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2885,61 +2885,6 @@
         }
     ],
     "packages-dev": [
-        {
-            "name": "baum/baum",
-            "version": "1.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/etrepat/baum.git",
-                "reference": "9290bed862d329aaaef666a71e0a2734afc28286"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/etrepat/baum/zipball/9290bed862d329aaaef666a71e0a2734afc28286",
-                "reference": "9290bed862d329aaaef666a71e0a2734afc28286",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/console": "5.*",
-                "illuminate/database": "5.*",
-                "illuminate/events": "5.*",
-                "illuminate/filesystem": "5.*",
-                "illuminate/support": "5.*",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "d11wtq/boris": "~1.0.10",
-                "mockery/mockery": "~0.9",
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Baum": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Estanislau Trepat",
-                    "email": "estanis@etrepat.com",
-                    "homepage": "http://etrepat.com"
-                }
-            ],
-            "description": "Baum is an implementation of the Nested Set pattern for Eloquent models.",
-            "keywords": [
-                "Laravel 4",
-                "database",
-                "eloquent",
-                "laravel",
-                "laravel 5",
-                "nested set"
-            ],
-            "time": "2015-03-04T12:07:54+00:00"
-        },
         {
             "name": "beyondcode/laravel-dump-server",
             "version": "1.2.2",

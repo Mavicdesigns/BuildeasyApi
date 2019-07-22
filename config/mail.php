@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.sendgrid.net'),
+    'host' => env('MAIL_HOST'),
 
     /*
     |--------------------------------------------------------------------------
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME', 'apikey'),
+    'username' => env('MAIL_USERNAME'),
 
-    'password' => env('MAIL_PASSWORD', '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'),
+    'password' => env('MAIL_PASSWORD'),
 
     /*
     |--------------------------------------------------------------------------

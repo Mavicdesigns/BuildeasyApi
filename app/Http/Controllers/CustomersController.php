@@ -278,6 +278,8 @@ class CustomersController extends Controller
                 ]);
 
 
+                $newUser->sendEmailVerificationNotification();
+
 
                 return response()->json([
                     'error' => 0,

@@ -11,14 +11,15 @@ class OrderPaid extends Notification
 {
     use Queueable;
 
+    private $details;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($details)
     {
-        //
+        $this->details = $details;
     }
 
     /**
@@ -29,7 +30,7 @@ class OrderPaid extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail','database'];
     }
 
     /**
@@ -41,9 +42,10 @@ class OrderPaid extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->greeting($this->details['greeting'])
+            ->line($this->details['body'])
+            ->action('View Order', url('/'))
+            ->line('Thank you for using Buildeasy');
     }
 
 

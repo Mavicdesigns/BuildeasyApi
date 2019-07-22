@@ -64,11 +64,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return AdminUsers::create([
+        $user =  AdminUsers::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'api_key' =>  Str::random(20),
         ]);
+
+        $user->sendEmailVerificationNotification();
+
+        return  $user;
     }
 }

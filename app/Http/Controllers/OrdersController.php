@@ -190,7 +190,13 @@ class OrdersController extends Controller
                                ]);
 
                                $user = User::where('user_id', '=', $newOrder['supplier_id'])->get();
-                               Notification::send($user, new OrderPaid());
+
+                               $details = [
+                                   'greeting' => 'Hi'.$user['company Name'],
+                                   'body' => 'One order is need your assistance immediately'
+                               ];
+
+                               Notification::send($user, new OrderPaid($details));
 
                                return response()->json([
                                    'error' => 0,

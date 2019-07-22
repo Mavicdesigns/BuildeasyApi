@@ -2,10 +2,11 @@
 
 namespace App;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class AdminUsers extends Authenticatable
+class AdminUsers extends Authenticatable implements  MustVerifyEmail
 {
     use Notifiable;
 

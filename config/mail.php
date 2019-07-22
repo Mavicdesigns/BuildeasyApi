@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailtrap.io'),
+    'host' => env('MAIL_HOST', 'smtp.sendgrid.net'),
 
     /*
     |--------------------------------------------------------------------------
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME', '273476259e6bd5'),
+    'username' => env('MAIL_USERNAME', 'apikey'),
 
-    'password' => env('MAIL_PASSWORD', '3f7e06d7c59fc8'),
+    'password' => env('MAIL_PASSWORD', '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'),
 
     /*
     |--------------------------------------------------------------------------

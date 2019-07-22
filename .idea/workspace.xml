@@ -45,8 +45,8 @@
       <file leaf-file-name="mail.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/mail.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.5448276">
-              <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.9086207">
+              <caret line="76" column="79" selection-start-line="76" selection-start-column="79" selection-end-line="76" selection-end-column="79" />
               <folding />
             </state>
           </provider>
@@ -788,8 +788,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/mail.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.5448276">
-          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.9086207">
+          <caret line="76" column="79" selection-start-line="76" selection-start-column="79" selection-end-line="76" selection-end-column="79" />
           <folding />
         </state>
       </provider>

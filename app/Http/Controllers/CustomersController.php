@@ -151,7 +151,7 @@ class CustomersController extends Controller
         $data['password'] = $request->json('password');
 
         try{
-           if(!$token = auth()->attempt($data)){
+           if(!$token = Auth::guard('api')->attempt($data)){
                return response()->json(['error' => 1,'error_message' => 'User not found', 'extra' => bcrypt($data['password'])], 400);
 
            }
@@ -188,7 +188,6 @@ class CustomersController extends Controller
         }catch(JWTException $e){
             return response()->json([
                     'error' => 1,
-                    'token' => $request->token,
                     'error_message' => 'issue with server'
                 ]
                 , 500);
@@ -209,15 +208,52 @@ class CustomersController extends Controller
     }
 
     public function registerCustomer(Request $request){
-        $data = $request->json()->all();
-
-
         try{
-            if(!$user = JWTAuth::parseToken()->authenticate()){
-                return response()->json(['error' => 1,'error_message' => 'User not found'], 400);
+
+
+            try{
+                if(!$user = JWTAuth::parseToken()->authenticate()){
+                    return response()->json(['error' => 1,'error_message' => 'User not found'], 400);
+                }
+
+                $data = $request->json()->all();
+
+                $name = explode(' ',$user->name,2);
+
+                $customer = Customers::create([
+                    'user_id' => $user->user_id,
+                    "firstName" => $name[0],
+                    "LastName" => $name[1],
+                    "phone_number" => $data['phone_number'],
+                    "companyName" => $data['companyName'],
+                    'community' => $data['locality'],
+                    "country" => $data['country'],
+                    "city" => $data['city'],
+                    "zip" => 0,
+                    "address1" => $data['mainAddress'],
+                    "address2" => $data['address2'],
+                    "local_government" => $data['local_government']
+                ]);
+
+                return response()->json([
+                    'error' => 0,
+                    'success' => 'Customer details registered',
+                    'customer' => $customer
+                ]);
+
+
+            }catch(JWTException $e){
+                return response()->json([
+                        'error' => 1,
+                        'error_message' => 'issue with server'
+                    ]
+                    , 500);
 
             }
-        }catch(JWTException $e){
+
+
+
+        }catch(\Exception $e){
             return response()->json([
                     'error' => 1,
                     'error_message' => 'issue with server'
@@ -225,6 +261,11 @@ class CustomersController extends Controller
                 , 500);
 
         }
+    }
+
+    public function registerUser(Request $request){
+        $data = $request->json()->all();
+
 
 
 
@@ -237,21 +278,11 @@ class CustomersController extends Controller
                 ]);
 
 
-                $customer = Customers::create([
-                    'user_id' => $newUser->user_id,
-                    "firstName" => $data['firstName'],
-                    "LastName" => $data['lastName'],
-                    "phone_number" => $data['phone_number'],
-                    "companyName" => $data['companyName'],
-                    'community' => $data['locality'],
-                    "country" => $data['country'],
-                    "city" => $data['city'],
-                    "zip" => 0,
-                    "address1" => $data['mainAddress'],
-                    "address2" => $data['address2'],
-                    "local_government" => $data['local_government']
-                ]);
 
+                return response()->json([
+                    'error' => 0,
+                    'user' => $newUser
+                ]);
 
             }catch(\Exception $e){
                 return response()->json([

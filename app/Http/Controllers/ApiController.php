@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Customers;
 use App\Imaging;
+use App\Imagings;
 use App\products;
 use App\Supplier;
 use App\User;
@@ -105,7 +106,7 @@ class ApiController extends Controller
                         $src = 'http://localhost/buildeasyApi/public/files/' . $name;
 
 
-                        $image = Imaging::firstOrCreate([
+                        $image = Imagings::firstOrCreate([
                             'image_id' => $id,
                             'src' => $src,
                             'title' => $name,
@@ -204,7 +205,7 @@ class ApiController extends Controller
 
             try{
 
-                $image = Imaging::where('supplier_id', '=', $request->supplier_id)->get();
+                $image = Imagings::where('supplier_id', '=', $request->supplier_id)->get();
 
                 return response()->json([
                     'error' => 0,

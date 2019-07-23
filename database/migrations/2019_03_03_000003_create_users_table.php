@@ -30,6 +30,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->nullableTimestamps();
             $table->timestamp('email_verified_at')->nullable(true);
+            $table->timestamp('phone_verified_at')->nullable(true);
+
         });
     }
 

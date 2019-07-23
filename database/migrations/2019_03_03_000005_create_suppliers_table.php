@@ -26,7 +26,7 @@ class CreateSuppliersTable extends Migration
             $table->string('supplier_id');
             $table->string('place_id', 200);
             $table->string('LG');
-            $table->string('avi');
+            $table->string('avi')->nullable(true);
             $table->string('state');
             $table->string('country', 200);
             $table->text('address');

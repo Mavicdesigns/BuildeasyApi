@@ -26,22 +26,10 @@ class ApiKey
         } else {
 
 
-            $users = AdminUsers::where('api_key', $request->api_key)->count();
-
-            if ($users != 1) {
-
-                return response()->json([
-                    'message' => "Invalid access key"
-                ],403);
-
-
-
-            } else {
-
 
                 return $next($request);
 
-            }
+            
         }
     }
 }

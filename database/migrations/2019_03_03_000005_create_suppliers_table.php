@@ -36,6 +36,7 @@ class CreateSuppliersTable extends Migration
             $table->text('address')->nullable(true);
             $table->string('status')->default('inActive');
             $table->string('title');
+            $table->rememberToken();
             $table->timestamp('email_verified_at')->nullable(true);
             $table->timestamp('phone_verified_at')->nullable(true);
             $table->nullableTimestamps();

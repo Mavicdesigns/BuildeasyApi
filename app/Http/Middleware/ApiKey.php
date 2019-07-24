@@ -29,7 +29,7 @@ class ApiKey
 
                 return $next($request);
 
-            
+
         }
     }
 }

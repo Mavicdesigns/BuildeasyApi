@@ -24,14 +24,20 @@ class CreateSuppliersTable extends Migration
             $table->engine = 'MyISAM';
             $table->increments('id');
             $table->string('supplier_id');
-            $table->string('place_id', 200);
-            $table->string('LG');
+            $table->string('name');
+            $table->string('email');
+            $table->string('password');
+            $table->string('phone_number')->nullable(true);
+            $table->string('place_id', 200)->nullable(true);
+            $table->string('LG')->nullable(true);
             $table->string('avi')->nullable(true);
-            $table->string('state');
-            $table->string('country', 200);
-            $table->text('address');
-            $table->string('status');
+            $table->string('state')->nullable(true);
+            $table->string('country', 200)->nullable(true);
+            $table->text('address')->nullable(true);
+            $table->string('status')->default('inActive');
             $table->string('title');
+            $table->timestamp('email_verified_at')->nullable(true);
+            $table->timestamp('phone_verified_at')->nullable(true);
             $table->nullableTimestamps();
         });
     }

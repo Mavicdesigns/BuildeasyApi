@@ -15,6 +15,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use JD\Cloudder\Facades\Cloudder;
 use PHPUnit\Runner\Exception;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -78,6 +79,19 @@ class ApiController extends Controller
 
     }
 
+    public function uploadSingleFile($file){
+
+        $publicId =  "BuildeasyFiles/".$file->getClientOriginalName(). Str::random(16);
+
+        Cloudder::upload($file->getRealPath(), $publicId);
+
+
+
+
+        return Cloudder::secureShow($publicId);
+
+    }
+
     public function UploadImage(Request $request){
 
         if(isset($request->supplier_id) && Supplier::where('supplier_id', '=', $request->supplier_id)->exists()) {
@@ -100,10 +114,9 @@ class ApiController extends Controller
 
                     try {
 
-                        $file->move(public_path() . '/files/', $name);
 
+                        $src = $this->uploadSingleFile($file);
                         $id = Str::random(20);
-                        $src = 'http://localhost/buildeasyApi/public/files/' . $name;
 
 
                         $image = Imagings::firstOrCreate([
@@ -129,7 +142,7 @@ class ApiController extends Controller
                         return response()->json([
                                 'error' => 0,
                                 'data' => $e->getMessage(),
-                                'error_message' => "There was a problem Updating the image"
+                                'error_message' => "There was a problem Updating the image". $e->getMessage()
                             ]
                         );
                     }

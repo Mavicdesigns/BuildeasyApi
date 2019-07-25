@@ -9,6 +9,7 @@ use App\Supplier;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class ProductsController extends Controller
 {
@@ -388,6 +389,36 @@ class ProductsController extends Controller
 
 
 
+    }
+
+    public function createNewCategory(Request $request){
+
+        if(empty($request->title)){
+            return response()->json([
+                "error" => 1,
+                "error_message" => "type a name to continue"
+            ],400);
+        }
+
+        $cat = category::create([
+            "name" => $request->title,
+            "id" => Str::random()
+        ]);
+
+        return response()->json([
+            "error" => 0,
+            "newCategory" => $cat
+        ]);
+
+
+    }
+
+    public function getCategory(){
+        $catGory = category::all();
+
+        return response()->json([
+            'categories' => $catGory
+        ],200);
     }
 
 

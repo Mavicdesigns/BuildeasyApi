@@ -49,6 +49,7 @@ Route::group(['guard' => 'auth:api'], function(){
 
 //Product Routes
     Route::post('/products/createProduct', 'ProductsController@createProduct')->middleware('ApiKey');
+    Route::get('/products/category', 'ProductsController@getCategory')->middleware('ApiKey');
     Route::get('/products/deleteProduct/{product_id}', 'ProductsController@deleteProduct')->middleware('ApiKey');
     Route::post('/products/updateProduct', 'ProductsController@updateProduct')->middleware('ApiKey');
     Route::get('/products', 'ProductsController@index')->middleware('ApiKey');
@@ -56,6 +57,7 @@ Route::group(['guard' => 'auth:api'], function(){
     Route::get('/category/', 'ProductsController@getCategoryProduct')->middleware('ApiKey');
     Route::get('/category/getProductInCategory', 'ProductsController@getProductInCategory')->middleware('ApiKey');
     Route::get('/category/getProducts', 'ProductsController@getProductByCategory')->middleware('ApiKey');
+    Route::get('/category/create/{title}', 'ProductsController@createNewCategory')->middleware('ApiKey');
     Route::get('/products/getSupplierProducts/{supplier_id}', 'ProductsController@getSupplierProduct')->middleware('ApiKey');
 
 //Customers Routes
